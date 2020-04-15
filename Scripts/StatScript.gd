@@ -1,6 +1,6 @@
 extends GridContainer
 
-export (int) var start_shaking = 80
+export (int) var start_shaking = 20
 export (float) var intervals = 0.1
 var og_pos
 var timer

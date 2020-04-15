@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/door_still.png-00579892e73afa594c035585124e24c4.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Animations/test.png"
+source_file="res://Animations/DoorAnim/door_still.png"
+dest_files=[ "res://.import/door_still.png-00579892e73afa594c035585124e24c4.stex" ]
+
 [params]
 
 compress/mode=0
@@ -15,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

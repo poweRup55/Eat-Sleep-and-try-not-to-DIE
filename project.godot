@@ -21,7 +21,7 @@ config/icon="res://Animations/icon.png"
 
 [autoload]
 
-LevelManager="*res://Scripts/levels/LevelManager.gd"
+GameManager="*res://Scripts/GameManager.gd"
 
 [display]
 

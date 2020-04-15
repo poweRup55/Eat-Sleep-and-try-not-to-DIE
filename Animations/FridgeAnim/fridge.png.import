@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/fridge.png-14be15d6bb70967c377042dcdc097431.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Animations/test.png"
+source_file="res://Animations/FridgeAnim/fridge.png"
+dest_files=[ "res://.import/fridge.png-14be15d6bb70967c377042dcdc097431.stex" ]
+
 [params]
 
 compress/mode=0
@@ -15,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

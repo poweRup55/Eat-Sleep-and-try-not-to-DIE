@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/death.png-810c4c9c64f70d66d1277caa9d40f09d.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Animations/test.png"
+source_file="res://Animations/PlayerAnim/death.png"
+dest_files=[ "res://.import/death.png-810c4c9c64f70d66d1277caa9d40f09d.stex" ]
+
 [params]
 
 compress/mode=0
@@ -15,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

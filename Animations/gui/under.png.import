@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/under.png-0e216dbac71a455cbc136f00a4b4b56c.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Animations/test.png"
+source_file="res://Animations/gui/under.png"
+dest_files=[ "res://.import/under.png-0e216dbac71a455cbc136f00a4b4b56c.stex" ]
+
 [params]
 
 compress/mode=0
@@ -15,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

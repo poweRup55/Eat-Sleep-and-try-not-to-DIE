@@ -1,9 +1,11 @@
+# Level 1 script
 extends Node
 
-export (int) var level_duration = 60
+# Variables
+export (int) var level_duration = 10
 
+# Functions
 func _init():
-	LevelManager.level_changer_timer.start(level_duration)
-
-func execute():
-	LevelManager.items.get_children()[0].enable()
+	GameManager.level_changer_timer.start(level_duration)
+	GameManager.items.get_children()[0].enable()
+	

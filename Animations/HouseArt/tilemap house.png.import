@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/tilemap house.png-b9e9a9b56456aee405e7be5e3522b4b1.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Animations/test.png"
+source_file="res://Animations/HouseArt/tilemap house.png"
+dest_files=[ "res://.import/tilemap house.png-b9e9a9b56456aee405e7be5e3522b4b1.stex" ]
+
 [params]
 
 compress/mode=0
@@ -15,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

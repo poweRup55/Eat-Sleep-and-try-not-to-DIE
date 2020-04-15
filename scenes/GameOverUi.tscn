@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/GameOverText.gd" type="Script" id=1]
+[ext_resource path="res://Animations/gui/Background.png" type="Texture" id=2]
+[ext_resource path="res://Text/GameOverFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scripts/TextAnimation.gd" type="Script" id=4]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 456
+
+[sub_resource type="NoiseTexture" id=2]
+width = 200
+height = 50
+seamless = true
+noise = SubResource( 1 )
+
+[node name="Background" type="Sprite"]
+position = Vector2( 962, 527 )
+scale = Vector2( 1.07674, 1.2 )
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="Text" type="RichTextLabel" parent="."]
+margin_left = -773.0
+margin_top = -333.0
+margin_right = 773.0
+margin_bottom = -158.0
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0.0313726, 0.0784314, 0.117647, 1 )
+bbcode_enabled = true
+scroll_active = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextTimer" type="Timer" parent="."]
+
+[node name="AnimationTimer" type="Timer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_left = -366.0
+margin_top = -195.0
+margin_right = 402.0
+margin_bottom = 295.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer"]
+margin_left = 284.0
+margin_top = 220.0
+margin_right = 484.0
+margin_bottom = 270.0
+texture_normal = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="TextTimer" to="Text" method="_on_Timer_timeout"]
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_AnimationTimer_timeout"]
+[connection signal="pressed" from="CenterContainer/TextureButton" to="." method="_restart"]
