@@ -12,7 +12,7 @@ func _ready():
 	set_bbcode(dialog[page])
 	set_visible_characters(0)
 
-func _process(delta):
+func _process(_delta):
 	# If action key is pressed, shows entire text
 	
 	if typing:

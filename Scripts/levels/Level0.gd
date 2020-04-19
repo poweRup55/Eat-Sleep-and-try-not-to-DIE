@@ -9,8 +9,9 @@ var text = ["Eat, Sleep and try not to DIE!", "GOOD LUCK"]
 
 func _init():
 	text_instance = GameManager.TEXT_PRELOAD.instance()
-	text_instance.init(text)
 	add_child(text_instance)
+	text_instance.init(text)
+	
 	
 func text_ended():
 	text_instance.queue_free()

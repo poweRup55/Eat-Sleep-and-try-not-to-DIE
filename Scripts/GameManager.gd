@@ -7,9 +7,11 @@ const path_base_level = "res://Scripts/levels/Level"
 const path_level_dir = "res://Scripts/levels"
 const TEXT_PRELOAD = preload("res://scenes/GameText.tscn")
 const DEAD_PRELOAD = preload("res://scenes/GameOverUi.tscn")
+const MAIN_MENU_PRELOAD = preload("res://scenes/MainMenu.tscn")
 
 # Variables
 var is_dead = false
+var game_started = false
 
 var cur_level = 0
 var cur_level_path
@@ -21,12 +23,14 @@ var level_changer_timer
 var game_over_ui
 var in_ui = false
 
-export (bool) var debug_mode = true
+export (bool) var debug_mode = false
 
 var main_root
 var items
 var player
 var status_bar
+var camera
+var main_menu
 # Functions
 
 func _process(_delta):
@@ -43,16 +47,26 @@ func game_ready():
 	items = main_root.items
 	player = main_root.player
 	status_bar = main_root.status_bar
+	camera = main_root.camera
+	
+	main_menu = MAIN_MENU_PRELOAD.instance()
+	add_child(main_menu)
+	main_menu.z_index = 10
 	
 	_change_fullscreen()
 	for item in items.get_children():
 		item.disable()
 	level_changer_timer = Timer.new()
 	add_timers(self, level_changer_timer, "next_level")
-	_execute_level()
+
+func _start_game():
+	main_menu.queue_free()
+	game_started = true
+	camera.exit_main_menu()
 
 func add_timers(node, timer_var, connect_name = null):
 	# Adds timers to a node
+	
 	if connect_name:
 		timer_var.connect("timeout",node,connect_name) 
 	node.add_child(timer_var)
@@ -96,7 +110,7 @@ func restart():
 	# Restart game logic
 	
 	is_dead = false
-	if cur_level_instance:
+	if cur_level_instance != null:
 		cur_level_instance.queue_free()
 	player.restart()
 	items.restart()
