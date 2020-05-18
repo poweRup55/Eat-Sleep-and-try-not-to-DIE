@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=107 format=2]
 
 [ext_resource path="res://Animations/PlayerAnim/movement.png" type="Texture" id=1]
 [ext_resource path="res://Animations/DoorAnim/door.png" type="Texture" id=2]
@@ -14,7 +14,9 @@
 [ext_resource path="res://Scripts/PlayerMovment.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/StatBarPlaceLogic.gd" type="Script" id=13]
 [ext_resource path="res://Animations/PlayerAnim/death.png" type="Texture" id=14]
+[ext_resource path="res://Animations/TVAnim.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/CameraControl.gd" type="Script" id=16]
+[ext_resource path="res://Animations/TV.png" type="Texture" id=17]
 [ext_resource path="res://Music/MainMenuMusic150Mix.wav" type="AudioStream" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -305,35 +307,35 @@ region = Rect2( 448, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=48]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 64, 16, 16 )
+region = Rect2( 0, 80, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 1 )
-region = Rect2( 16, 64, 16, 16 )
+region = Rect2( 16, 80, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=50]
 atlas = ExtResource( 1 )
-region = Rect2( 32, 64, 16, 16 )
+region = Rect2( 32, 80, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=51]
 atlas = ExtResource( 1 )
-region = Rect2( 48, 64, 16, 16 )
+region = Rect2( 48, 80, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=52]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 80, 16, 16 )
+region = Rect2( 0, 64, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=53]
 atlas = ExtResource( 1 )
-region = Rect2( 16, 80, 16, 16 )
+region = Rect2( 16, 64, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=54]
 atlas = ExtResource( 1 )
-region = Rect2( 32, 80, 16, 16 )
+region = Rect2( 32, 64, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=55]
 atlas = ExtResource( 1 )
-region = Rect2( 48, 80, 16, 16 )
+region = Rect2( 48, 64, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=56]
 atlas = ExtResource( 1 )
@@ -375,12 +377,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
 "loop": true,
-"name": "up side",
+"name": "down side",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ) ],
 "loop": true,
-"name": "down side",
+"name": "up side",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ) ],
@@ -473,6 +475,46 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=79]
 extents = Vector2( 41.8251, 14.6396 )
 
+[sub_resource type="AtlasTexture" id=80]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=81]
+atlas = ExtResource( 15 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 15 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 15 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=86]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=87]
+atlas = ExtResource( 15 )
+region = Rect2( 96, 32, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=88]
+animations = [ {
+"frames": [ SubResource( 80 ), SubResource( 81 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ) ],
+"loop": true,
+"name": "use",
+"speed": 5.0
+} ]
+
 [node name="GameMode" type="Node2D"]
 script = ExtResource( 11 )
 
@@ -541,6 +583,7 @@ nameOfStat = "Food"
 stat = 2
 reduce_from_stat = 2.0
 intervals = 0.5
+is_enabled = true
 
 [node name="Sprite" type="Sprite" parent="Items/Fridge"]
 position = Vector2( -9.82202, -2.45551 )
@@ -559,8 +602,10 @@ shape = SubResource( 67 )
 
 [node name="Tween" type="Tween" parent="Items/Fridge"]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Items/Fridge"]
+
 [node name="Bed" type="RigidBody2D" parent="Items"]
-position = Vector2( 114.476, 573.026 )
+position = Vector2( 105.223, 373.159 )
 mode = 1
 script = ExtResource( 10 )
 nameOfStat = "Sleep"
@@ -610,6 +655,31 @@ position = Vector2( 0.197647, 66.2087 )
 shape = SubResource( 79 )
 
 [node name="Tween" type="Tween" parent="Items/Door"]
+
+[node name="TV" type="RigidBody2D" parent="Items"]
+position = Vector2( 380.921, 709.827 )
+mode = 1
+script = ExtResource( 10 )
+nameOfStat = "TV"
+reduce_from_stat = 2.0
+intervals = 0.5
+is_enabled = true
+
+[node name="Sprite" type="Sprite" parent="Items/TV"]
+scale = Vector2( 6.76254, 6.76254 )
+texture = ExtResource( 17 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Items/TV"]
+position = Vector2( 11.2782, 0 )
+scale = Vector2( 6.763, 6.763 )
+frames = SubResource( 88 )
+animation = "use"
+offset = Vector2( -1.769, 0 )
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Items/TV"]
+polygon = PoolVector2Array( 19.2708, -98.0946, 103.094, -52.5905, 103.693, 28.838, 52.2014, 48.5964, 25.8569, 38.4178, -34.6157, 94.6992, -84.9097, 52.1888, -86.1072, -1.69769, -51.3804, -53.1892 )
+
+[node name="Tween" type="Tween" parent="Items/TV"]
 
 [node name="StatsOld" type="GridContainer" parent="."]
 visible = false

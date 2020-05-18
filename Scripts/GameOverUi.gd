@@ -8,3 +8,4 @@ func init(text_arr):
 	
 func text_ended():
 	get_parent().text_ended()
+
