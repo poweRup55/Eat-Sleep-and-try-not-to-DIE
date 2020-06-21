@@ -14,6 +14,5 @@ func _ready():
 	camera = $Camera2D
 	GameManager.game_ready()
 
-
 func _camera_zoomed_out():
 	GameManager._execute_level()

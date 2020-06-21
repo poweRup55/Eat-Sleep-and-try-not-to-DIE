@@ -13,6 +13,8 @@ export var add_to_stat = 0.5
 export var reduce_from_stat = 0.5
 export (float) var intervals = 2
 export (bool) var is_enabled = false
+
+var defualt_values = [max_stat,stat,start_stat,add_to_stat,reduce_from_stat]
 var been_enabled = false
 
 var sprite
@@ -125,5 +127,9 @@ func disable():
 	is_enabled = false
 	
 func restart():
+	max_stat = defualt_values[0]
+	start_stat = defualt_values[2]
 	stat = start_stat
+	add_to_stat = defualt_values[3]
+	reduce_from_stat = defualt_values[4]
 	disable()

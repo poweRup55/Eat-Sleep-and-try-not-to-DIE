@@ -2,6 +2,7 @@
 
 extends Node
 
+
 # Constants
 const path_base_level = "res://Scripts/levels/Level"
 const path_level_dir = "res://Scripts/levels"
@@ -31,6 +32,9 @@ var player
 var status_bar
 var camera
 var main_menu
+
+var in_main_menu
+
 # Functions
 
 func _process(_delta):
@@ -40,6 +44,10 @@ func _process(_delta):
 	if Input.is_action_pressed("ui_end"):
 		get_tree().quit()
 
+	if Input.is_action_just_released("db_skip_level"):
+		if not in_main_menu and cur_level < num_of_levels:
+			next_level()
+				
 func game_ready():
 	# Makes game ready
 	
@@ -50,19 +58,27 @@ func game_ready():
 	camera = main_root.camera
 	
 	main_menu = MAIN_MENU_PRELOAD.instance()
+	enter_main_menu()
 	add_child(main_menu)
 	main_menu.z_index = 10
+
 	
 	_change_fullscreen()
 	for item in items.get_children():
 		item.disable()
 	level_changer_timer = Timer.new()
 	add_timers(self, level_changer_timer, "next_level")
+	if debug_mode:
+		camera.game_mode()
+		GameManager._start_game()
+		
+		_execute_level()
 
 func _start_game():
 	main_menu.queue_free()
 	game_started = true
-	camera.exit_main_menu()
+	if not debug_mode:
+		camera.exit_main_menu()
 
 func add_timers(node, timer_var, connect_name = null):
 	# Adds timers to a node
@@ -122,7 +138,7 @@ func restart():
 
 func _execute_level():
 	# Starts current level
-	
+	exit_main_menu()
 	cur_level_path = load (_return_level_path())
 	if cur_level_path:
 		cur_level_instance = cur_level_path.new()
@@ -130,7 +146,8 @@ func _execute_level():
 
 func next_level():
 	# Loads next level
-
+	if cur_level_instance.in_text:
+		cur_level_instance.text_ended()
 	level_changer_timer.stop()
 	if cur_level_instance:
 		cur_level_instance.queue_free()
@@ -147,3 +164,9 @@ func die():
 	# Player death logic
 	is_dead = true
 	player.die()
+
+func enter_main_menu():
+	in_main_menu = true
+
+func exit_main_menu():
+	in_main_menu = false

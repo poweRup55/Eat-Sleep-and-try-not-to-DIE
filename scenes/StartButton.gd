@@ -9,6 +9,7 @@ var reverse = false
 func _ready():
 	frame = 0;
 	play()
+			
 
 func _on_TextureButton_pressed():
 	var button = $Button
@@ -35,3 +36,6 @@ func _process(_delta):
 			stop()
 			speed_scale = 1
 			GameManager._start_game()
+		elif Input.is_action_just_released("ui_skip"):
+			GameManager._start_game()
+

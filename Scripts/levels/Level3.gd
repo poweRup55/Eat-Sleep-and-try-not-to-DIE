@@ -3,7 +3,7 @@ extends Node
 var in_text = true
 # Variables
 var text_instance
-var text = ["Pretty easy, right?", "dont get used to it!", "go and get some sleep while you can"]
+var text = ["All this drinking got you...","hmmm... needing a rest?",'Well, heres a rest room for ya']
 export (int) var level_duration = 10
 
 # Functions
@@ -17,6 +17,6 @@ func text_ended():
 	in_text = false
 	text_instance.queue_free()
 	GameManager.level_changer_timer.start(level_duration)
-	GameManager.items.get_children()[1].enable()
+	GameManager.items.get_children()[2].enable()
 
 
