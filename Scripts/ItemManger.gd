@@ -15,7 +15,8 @@ func restart():
 		
 func check_dead():
 	# Checks if player has died
-	
+	if Input.is_action_pressed("ui_die"):
+		GameManager.die()
 	if not GameManager.is_dead:
 		for item in get_children():
 			if item.stat <= 0:

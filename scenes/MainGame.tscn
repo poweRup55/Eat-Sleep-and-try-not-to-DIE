@@ -275,7 +275,7 @@ position = Vector2( 1919.46, 475.61 )
 shape = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 388.895, 520.033 )
+position = Vector2( 391.895, 572.033 )
 
 [node name="Items" type="YSort" parent="."]
 script = ExtResource( 9 )

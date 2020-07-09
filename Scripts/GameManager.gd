@@ -26,7 +26,7 @@ var pickable_timer
 var game_over_ui
 var in_ui = false
 
-export (bool) var debug_mode = false
+export (bool) var debug_mode = true
 
 var main_root
 var items
@@ -34,6 +34,8 @@ var player
 var status_bar
 var camera
 var main_menu
+
+var player_start_position
 
 var pizz_pick_up
 var pizz_func_array
@@ -66,6 +68,8 @@ func game_ready():
 	player = main_root.player
 	status_bar = main_root.status_bar
 	camera = main_root.camera
+	
+	player_start_position = player.position
 	
 	main_menu = MAIN_MENU_PRELOAD.instance()
 	enter_main_menu()
