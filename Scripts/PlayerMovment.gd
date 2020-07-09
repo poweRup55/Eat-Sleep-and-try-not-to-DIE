@@ -3,7 +3,10 @@ extends KinematicBody2D
 
 # Variables
 
-export (int) var speed = 200
+export (int) var max_speed = 400
+export (int) var acceleration = 2000
+export (int) var friction = 2000
+
 export (bool) var enabled = true
 
 var velocity = Vector2()
@@ -41,10 +44,10 @@ func animation_movement(right,left,down,up):
 	else:
 		$walk_animation.play("standing")
 		
-func get_input():
+func get_input(delta):
 	#	Input handler
 	
-	velocity = Vector2()
+	var input_vector = Vector2.ZERO
 	var is_right_presed = Input.is_action_pressed('ui_right')
 	var is_left_presed = Input.is_action_pressed('ui_left')
 	var is_down_presed = Input.is_action_pressed('ui_down')
@@ -52,21 +55,27 @@ func get_input():
 	#	Adds to velocity
 	
 	if is_right_presed:
-		velocity.x += 1
+		input_vector.x += 1
 	if is_left_presed:
-		velocity.x -= 1
+		input_vector.x -= 1
 	if is_down_presed:
-		velocity.y += 1
+		input_vector.y += 1
 	if is_up_presed:
-		velocity.y -= 1
-	velocity = velocity.normalized() * speed
+		input_vector.y -= 1
+	
+	input_vector = input_vector.normalized()
+	
+	if input_vector != Vector2.ZERO:
+		velocity = velocity.move_toward(input_vector * max_speed, acceleration*delta)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	animation_movement(is_right_presed,is_left_presed,is_down_presed,is_up_presed)
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	#	Movement of player
 	if not GameManager.is_dead and enabled:
-		get_input()
-		var collision = move_and_collide(velocity * _delta)
+		get_input(delta)
+		var collision = move_and_collide(velocity * delta)
 		if collision:
 			colider = collision.get_collider()
 			if colider.get_parent().name != "Items": #checks if collider is an item.
@@ -116,7 +125,3 @@ func restart():
 	$walk_animation.speed_scale = 1
 	$walk_animation.play("standing")
 	enable()
-	
-
-func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
-	print(body_id, body, body_shape, area_shape)

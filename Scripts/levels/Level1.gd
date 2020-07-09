@@ -8,4 +8,5 @@ export (int) var level_duration = 10
 func _init():
 	GameManager.level_changer_timer.start(level_duration)
 	GameManager.items.get_children()[0].enable()
+	GameManager.add_pickables(['speed_up'])
 	

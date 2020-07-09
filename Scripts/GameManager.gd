@@ -9,6 +9,7 @@ const path_level_dir = "res://Scripts/levels"
 const TEXT_PRELOAD = preload("res://scenes/GameText.tscn")
 const DEAD_PRELOAD = preload("res://scenes/GameOverUi.tscn")
 const MAIN_MENU_PRELOAD = preload("res://scenes/MainMenu.tscn")
+const PIZZ_PICK_PRELOAD =preload("res://scenes/PickUp.tscn")
 
 # Variables
 var is_dead = false
@@ -20,6 +21,7 @@ var cur_level_instance
 var num_of_levels = _num_of_overall_levels()
 
 var level_changer_timer
+var pickable_timer
 
 var game_over_ui
 var in_ui = false
@@ -32,6 +34,9 @@ var player
 var status_bar
 var camera
 var main_menu
+
+var pizz_pick_up
+var pizz_func_array
 
 var in_main_menu
 
@@ -47,7 +52,12 @@ func _process(_delta):
 	if Input.is_action_just_released("db_skip_level"):
 		if not in_main_menu and cur_level < num_of_levels:
 			next_level()
-				
+	
+	if Input.is_action_just_released('ui_skip_level'):
+		for item in items.get_children():
+			if not item.is_enabled:
+				item.enable()
+				break
 func game_ready():
 	# Makes game ready
 	
@@ -110,6 +120,16 @@ func _num_of_overall_levels():
 			num_of_files_temp += 1
 	dir.list_dir_end()
 	return num_of_files_temp
+
+func add_pickables(func_array):
+	pizz_pick_up = PIZZ_PICK_PRELOAD.instance()
+	main_root.add_child(pizz_pick_up)
+	pickable_timer = Timer.new()
+	add_timers(pizz_pick_up, pickable_timer, '_on_Appear_timeout')
+	pizz_pick_up.init(func_array, pickable_timer)
+	pizz_pick_up.z_index = player.z_index
+	pizz_pick_up.start_appearing()
+
 
 func game_over():
 	# Game over logic

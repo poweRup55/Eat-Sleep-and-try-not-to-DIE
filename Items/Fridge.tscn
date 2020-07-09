@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/ItemsBehave.gd" type="Script" id=1]
+[ext_resource path="res://Animations/FridgeAnim/fridge.png" type="Texture" id=2]
+[ext_resource path="res://Animations/FridgeAnim/Eating fridge.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 32, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 0, 32, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "use",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 43.1719, 15.622 )
+
+[node name="Fridge" type="RigidBody2D"]
+mode = 1
+script = ExtResource( 1 )
+nameOfStat = "Food"
+reduce_from_stat = 2.0
+intervals = 0.5
+is_enabled = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -2.58917, -39.0214 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -49.7674, -34.5659 )
+scale = Vector2( 7, 7 )
+frames = SubResource( 5 )
+offset = Vector2( -1.769, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
