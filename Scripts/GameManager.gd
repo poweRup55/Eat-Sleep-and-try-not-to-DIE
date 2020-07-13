@@ -26,8 +26,7 @@ var pickable_timer
 var game_over_ui
 var in_ui = false
 
-export (bool) var debug_mode = true
-
+export (bool) var debug_mode = false
 var main_root
 var items
 var player

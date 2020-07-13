@@ -22,20 +22,12 @@ func get_input(delta):
 	#	Input handler
 	
 	var input_vector = Vector2.ZERO
-	var is_right_presed = Input.is_action_pressed('ui_right')
-	var is_left_presed = Input.is_action_pressed('ui_left')
-	var is_down_presed = Input.is_action_pressed('ui_down')
-	var is_up_presed = Input.is_action_pressed('ui_up')
+
 	#	Adds to velocity
-	
-	if is_right_presed:
-		input_vector.x += 1
-	if is_left_presed:
-		input_vector.x -= 1
-	if is_down_presed:
-		input_vector.y += 1
-	if is_up_presed:
-		input_vector.y -= 1
+	input_vector.x += int(Input.is_action_pressed('ui_right'))
+	input_vector.x -= int(Input.is_action_pressed('ui_left'))
+	input_vector.y += int(Input.is_action_pressed('ui_down'))
+	input_vector.y -= int(Input.is_action_pressed('ui_up'))
 	
 	input_vector = input_vector.normalized()
 	
