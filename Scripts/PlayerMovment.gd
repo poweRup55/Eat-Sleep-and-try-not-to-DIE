@@ -40,6 +40,11 @@ func get_input(delta):
 		animationState.travel('idle')
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 
+func powerup_text(power_text):
+	
+	$TextAbove.set_bbcode("[center]"+power_text+"[/center]")
+	$TextAbove/AnimationPlayer.play("powerUpAnim")
+
 func _physics_process(delta):
 	#	Movement of player
 	if not GameManager.is_dead and enabled:

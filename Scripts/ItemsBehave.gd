@@ -14,10 +14,17 @@ export var reduce_from_stat = 0.5
 export (float) var intervals = 2
 export (bool) var is_enabled = false
 
-var defualt_values = [max_stat,stat,start_stat,add_to_stat,reduce_from_stat]
+var default_max_stat 
+var default_start_stat
+var default_add_to_stat
+var default_reduce_from_stat
+
+onready var items_node = get_parent()
+
 var been_enabled = false
 
 var sprite
+var animationPlayer
 var interval_timer
 var status_bar_instance = STATUS_BAR.instance()
 var old_layer_mask = 0
@@ -44,12 +51,18 @@ func _check_enable():
 
 func _ready():
 	sprite = $Sprite
-	$AnimatedSprite.hide()
+	sprite.hide()
+	animationPlayer = $AnimationPlayer
+	animationPlayer.play("idle")
 	old_layer_mask = get_collision_layer()
 	old_collision_mask = get_collision_mask()
 	set_collision_layer(0)
 	set_collision_mask(0)
-	sprite.hide()
+	
+	default_max_stat = max_stat
+	default_start_stat = start_stat
+	default_add_to_stat = add_to_stat
+	default_reduce_from_stat = reduce_from_stat
 	
 func _enable_action():
 	# Enable logic
@@ -76,8 +89,8 @@ func _fade_in():
 	
 	sprite.modulate.a = 0
 	sprite.show()
-	$Tween.interpolate_property(sprite, "modulate:a", 0, 1.0, 2)
-	$Tween.start()
+	items_node.tween.interpolate_property(sprite, "modulate:a", 0, 1.0, 2)
+	items_node.tween.start()
 	
 func _initialize_progress_bar():
 	# Initiates progress bar
@@ -91,10 +104,8 @@ func action():
 	# Action button pressed on item logic
 	
 	item_being_used = true
-	sprite.hide()
 	GameManager.player.disable()
-	$AnimatedSprite.play("use")
-	$AnimatedSprite.show()
+	animationPlayer.play('use')
 	_fill_meter()
 
 func _fill_meter():
@@ -108,9 +119,8 @@ func end_action():
 	# Called when getting out of action
 	
 	item_being_used = false
-	sprite.show()
 	GameManager.player.enable()
-	$AnimatedSprite.hide()
+	animationPlayer.play('idle')
 
 func _reduce_stat():
 	# Reduces stat value
@@ -127,9 +137,9 @@ func disable():
 	is_enabled = false
 	
 func restart():
-	max_stat = defualt_values[0]
-	start_stat = defualt_values[2]
-	stat = start_stat
-	add_to_stat = defualt_values[3]
-	reduce_from_stat = defualt_values[4]
+	max_stat = default_max_stat
+	start_stat = default_start_stat
+	stat = default_start_stat
+	add_to_stat = default_add_to_stat
+	reduce_from_stat = default_reduce_from_stat
 	disable()

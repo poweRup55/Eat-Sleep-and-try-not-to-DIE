@@ -2,6 +2,7 @@
 
 extends Node2D
 
+onready var tween = $tools/Tween
 # Functions
 
 func _process(_delta):
@@ -11,7 +12,8 @@ func restart():
 	# Restart Logic
 	
 	for item in get_children():
-		item.restart()
+		if item.name != 'tools':
+			item.restart()
 		
 func check_dead():
 	# Checks if player has died
@@ -19,5 +21,6 @@ func check_dead():
 		GameManager.die()
 	if not GameManager.is_dead:
 		for item in get_children():
-			if item.stat <= 0:
-				GameManager.die()
+			if item.name != 'tools':
+				if item.stat <= 0:
+					GameManager.die()

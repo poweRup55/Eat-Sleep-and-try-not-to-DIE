@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Bar1120mix.wav-56a75c892b66b412dea8c1f0f3178075.sample"
+path="res://.import/Bar1120mix.wav-0be24790295f44b8f1f98fde30eaa46f.sample"
 
 [deps]
 
-source_file="res://Bar1120mix.wav"
-dest_files=[ "res://.import/Bar1120mix.wav-56a75c892b66b412dea8c1f0f3178075.sample" ]
+source_file="res://Music/Bar1120mix.wav"
+dest_files=[ "res://.import/Bar1120mix.wav-0be24790295f44b8f1f98fde30eaa46f.sample" ]
 
 [params]
 

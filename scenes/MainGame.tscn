@@ -1,20 +1,16 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Animations/DoorAnim/door.png" type="Texture" id=2]
+[ext_resource path="res://Items/Bed.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Items/Fridge.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Animations/DoorAnim/door_still.png" type="Texture" id=4]
-[ext_resource path="res://Animations/BedAnim/bed.png" type="Texture" id=5]
+[ext_resource path="res://Items/BathRoom.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Items/Television.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/MainMenu.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Animations/BedAnim/BedAnimation.png" type="Texture" id=7]
 [ext_resource path="res://Animations/HouseArt/tilemap house.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/ItemManger.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/ItemsBehave.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/MainGame.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/StatBarPlaceLogic.gd" type="Script" id=13]
-[ext_resource path="res://Animations/TVAnim.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/CameraControl.gd" type="Script" id=16]
-[ext_resource path="res://Animations/TV.png" type="Texture" id=17]
 [ext_resource path="res://Music/MainMenuMusic150Mix.wav" type="AudioStream" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -139,100 +135,6 @@ extents = Vector2( 1139.77, 10 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 27.205, 565.899 )
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 7 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 7 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 7 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="SpriteFrames" id=11]
-animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": true,
-"name": "use",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 74.3835, 36.359 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 2 )
-region = Rect2( 16, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 2 )
-region = Rect2( 48, 0, 16, 24 )
-
-[sub_resource type="SpriteFrames" id=17]
-animations = [ {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
-"name": "use",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 41.8251, 14.6396 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 15 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 15 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 15 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 15 )
-region = Rect2( 0, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 15 )
-region = Rect2( 32, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 15 )
-region = Rect2( 64, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 15 )
-region = Rect2( 96, 32, 32, 32 )
-
-[sub_resource type="SpriteFrames" id=27]
-animations = [ {
-"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
-"loop": true,
-"name": "use",
-"speed": 5.0
-} ]
-
 [node name="GameMode" type="YSort"]
 script = ExtResource( 11 )
 
@@ -275,6 +177,10 @@ position = Vector2( 28.6319, 50.2804 )
 position = Vector2( 1919.46, 475.61 )
 shape = SubResource( 6 )
 
+[node name="MainMenu" parent="." instance=ExtResource( 6 )]
+position = Vector2( 275.963, 504.95 )
+z_index = 10
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 391.895, 572.033 )
 
@@ -284,81 +190,20 @@ script = ExtResource( 9 )
 [node name="Fridge" parent="Items" instance=ExtResource( 3 )]
 position = Vector2( 1853.76, 525.387 )
 
-[node name="Bed" type="RigidBody2D" parent="Items"]
-position = Vector2( 105.223, 373.159 )
-mode = 1
-script = ExtResource( 10 )
-nameOfStat = "Sleep"
-reduce_from_stat = 2.0
-intervals = 0.5
+[node name="Bed" parent="Items" instance=ExtResource( 2 )]
+position = Vector2( 94.8773, 434.509 )
 
-[node name="Sprite" type="Sprite" parent="Items/Bed"]
-position = Vector2( -9.82202, -2.45551 )
-scale = Vector2( 5, 5 )
-z_index = 1
-texture = ExtResource( 5 )
+[node name="BathRoom" parent="Items" instance=ExtResource( 4 )]
+position = Vector2( 805.828, 329.016 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Items/Bed"]
-position = Vector2( 0.120258, -2.76001 )
-scale = Vector2( 5, 5 )
-frames = SubResource( 11 )
-animation = "use"
-offset = Vector2( -1.769, 0 )
+[node name="TV" parent="Items" instance=ExtResource( 5 )]
+position = Vector2( 107.145, 716.17 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Items/Bed"]
-position = Vector2( -10.4171, 37.0181 )
-shape = SubResource( 12 )
+[node name="tools" type="Node2D" parent="Items"]
 
-[node name="Tween" type="Tween" parent="Items/Bed"]
+[node name="Tween" type="Tween" parent="Items/tools"]
 
-[node name="Door" type="RigidBody2D" parent="Items"]
-position = Vector2( 871.29, 262.473 )
-mode = 1
-script = ExtResource( 10 )
-nameOfStat = "Bladder"
-reduce_from_stat = 2.0
-intervals = 0.5
-
-[node name="Sprite" type="Sprite" parent="Items/Door"]
-scale = Vector2( 6.76254, 6.76254 )
-texture = ExtResource( 4 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Items/Door"]
-position = Vector2( 11.2782, 0 )
-scale = Vector2( 6.763, 6.763 )
-frames = SubResource( 17 )
-animation = "use"
-offset = Vector2( -1.769, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Items/Door"]
-position = Vector2( 0.197647, 66.2087 )
-shape = SubResource( 18 )
-
-[node name="Tween" type="Tween" parent="Items/Door"]
-
-[node name="TV" type="RigidBody2D" parent="Items"]
-position = Vector2( 380.921, 709.827 )
-mode = 1
-script = ExtResource( 10 )
-nameOfStat = "TV"
-reduce_from_stat = 2.0
-intervals = 0.5
-
-[node name="Sprite" type="Sprite" parent="Items/TV"]
-scale = Vector2( 6.76254, 6.76254 )
-texture = ExtResource( 17 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Items/TV"]
-position = Vector2( 11.2782, 0 )
-scale = Vector2( 6.763, 6.763 )
-frames = SubResource( 27 )
-animation = "use"
-offset = Vector2( -1.769, 0 )
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Items/TV"]
-polygon = PoolVector2Array( 19.2708, -98.0946, 103.094, -52.5905, 103.693, 28.838, 52.2014, 48.5964, 25.8569, 38.4178, -34.6157, 94.6992, -84.9097, 52.1888, -86.1072, -1.69769, -51.3804, -53.1892 )
-
-[node name="Tween" type="Tween" parent="Items/TV"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Items/tools"]
 
 [node name="Stats" type="ReferenceRect" parent="."]
 margin_left = 18.8416
@@ -387,7 +232,4 @@ margin_bottom = 838.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="MainMenu" parent="." instance=ExtResource( 6 )]
-position = Vector2( 275.963, 504.95 )
 [connection signal="tween_all_completed" from="Camera2D/Tween" to="." method="_camera_zoomed_out"]

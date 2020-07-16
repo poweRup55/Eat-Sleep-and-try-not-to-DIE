@@ -110,7 +110,7 @@ position = Vector2( 0.422649, 0 )
 texture = ExtResource( 2 )
 vframes = 5
 hframes = 4
-frame = 19
+frame = 16
 
 [node name="Button" type="TextureButton" parent="Sprite"]
 anchor_left = 0.5

@@ -5,6 +5,7 @@ var items
 var player 
 var status_bar
 var camera
+var main_menu
 
 
 func _ready():
@@ -12,6 +13,7 @@ func _ready():
 	player = $Player
 	status_bar = $Stats
 	camera = $Camera2D
+	main_menu = $MainMenu
 	GameManager.game_ready()
 
 func _camera_zoomed_out():

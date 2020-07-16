@@ -8,7 +8,6 @@ const path_base_level = "res://Scripts/levels/Level"
 const path_level_dir = "res://Scripts/levels"
 const TEXT_PRELOAD = preload("res://scenes/GameText.tscn")
 const DEAD_PRELOAD = preload("res://scenes/GameOverUi.tscn")
-const MAIN_MENU_PRELOAD = preload("res://scenes/MainMenu.tscn")
 const PIZZ_PICK_PRELOAD =preload("res://scenes/PickUp.tscn")
 
 # Variables
@@ -26,7 +25,7 @@ var pickable_timer
 var game_over_ui
 var in_ui = false
 
-export (bool) var debug_mode = false
+export (bool) var debug_mode = true
 var main_root
 var items
 var player
@@ -56,9 +55,10 @@ func _process(_delta):
 	
 	if Input.is_action_just_released('ui_skip_level'):
 		for item in items.get_children():
-			if not item.is_enabled:
-				item.enable()
-				break
+			if item.name != "tools":
+				if not item.is_enabled:
+					item.enable()
+					break
 func game_ready():
 	# Makes game ready
 	
@@ -69,26 +69,28 @@ func game_ready():
 	camera = main_root.camera
 	
 	player_start_position = player.position
-	
-	main_menu = MAIN_MENU_PRELOAD.instance()
-	enter_main_menu()
-	add_child(main_menu)
-	main_menu.z_index = 10
-
+		
 	
 	_change_fullscreen()
-	for item in items.get_children():
-		item.disable()
+	_disable_items()
 	level_changer_timer = Timer.new()
 	add_timers(self, level_changer_timer, "next_level")
+	
 	if debug_mode:
 		camera.game_mode()
-		GameManager._start_game()
-		
+		GameManager._start_game()	
 		_execute_level()
+	else:
+		enter_main_menu()
+		
+
+func _disable_items():
+	for item in items.get_children():
+		if item.name == "tools":
+			continue
+		item.disable()
 
 func _start_game():
-	main_menu.queue_free()
 	game_started = true
 	if not debug_mode:
 		camera.exit_main_menu()
@@ -133,6 +135,9 @@ func add_pickables(func_array):
 	pizz_pick_up.z_index = player.z_index
 	pizz_pick_up.start_appearing()
 
+func delete_pickable(pickable):
+	pizz_pick_up.queue_free()
+
 
 func game_over():
 	# Game over logic
@@ -161,7 +166,8 @@ func restart():
 
 func _execute_level():
 	# Starts current level
-	exit_main_menu()
+	if in_main_menu:
+		exit_main_menu()
 	cur_level_path = load (_return_level_path())
 	if cur_level_path:
 		cur_level_instance = cur_level_path.new()
@@ -189,6 +195,7 @@ func die():
 	player.die()
 
 func enter_main_menu():
+	
 	in_main_menu = true
 
 func exit_main_menu():

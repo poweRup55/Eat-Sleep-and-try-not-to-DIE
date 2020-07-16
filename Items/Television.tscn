@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/ItemsBehave.gd" type="Script" id=1]
-[ext_resource path="res://Animations/FridgeAnim/Eating fridge.png" type="Texture" id=3]
+[ext_resource path="res://Animations/TV.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 43.1719, 15.622 )
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 0.1
 tracks/0/type = "value"
@@ -22,7 +19,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "use"
 length = 0.4
 loop = true
@@ -51,24 +48,26 @@ tracks/1/keys = {
 "values": [ 0.5 ]
 }
 
-[node name="Fridge" type="RigidBody2D"]
+[node name="TV" type="RigidBody2D"]
+scale = Vector2( 1.2, 1.2 )
 mode = 1
 script = ExtResource( 1 )
-nameOfStat = "Food"
+nameOfStat = "TV"
 reduce_from_stat = 2.0
 intervals = 0.5
 is_enabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -56.7539, -39.7952 )
-scale = Vector2( 7, 7 )
-texture = ExtResource( 3 )
-hframes = 5
+position = Vector2( 0.0281515, 0.688006 )
+scale = Vector2( 6, 6 )
+texture = ExtResource( 2 )
+hframes = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2( 1.405, 1.47 )
+polygon = PoolVector2Array( -52.5688, 30.4569, -51.7174, 0.657679, -35.7708, -13.7526, 17.643, -12.5074, 63.4263, -7.11169, 64.3578, 16.5506, 37.9642, 30.1731, 17.2466, 24.2133, -22.4858, 56.5668 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.5
-anims/idle = SubResource( 2 )
-anims/use = SubResource( 3 )
+anims/idle = SubResource( 1 )
+anims/use = SubResource( 2 )

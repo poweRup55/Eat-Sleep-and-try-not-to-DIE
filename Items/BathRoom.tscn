@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/ItemsBehave.gd" type="Script" id=1]
-[ext_resource path="res://Animations/FridgeAnim/Eating fridge.png" type="Texture" id=3]
+[ext_resource path="res://Animations/DoorAnim/door.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 43.1719, 15.622 )
@@ -51,18 +51,18 @@ tracks/1/keys = {
 "values": [ 0.5 ]
 }
 
-[node name="Fridge" type="RigidBody2D"]
+[node name="BathRoom" type="RigidBody2D"]
 mode = 1
 script = ExtResource( 1 )
-nameOfStat = "Food"
+nameOfStat = "Bladder"
 reduce_from_stat = 2.0
 intervals = 0.5
 is_enabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -56.7539, -39.7952 )
+position = Vector2( -0.267696, -69.199 )
 scale = Vector2( 7, 7 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
