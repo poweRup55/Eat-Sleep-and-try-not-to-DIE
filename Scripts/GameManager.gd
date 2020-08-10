@@ -25,7 +25,7 @@ var pickable_timer
 var game_over_ui
 var in_ui = false
 
-export (bool) var debug_mode = true
+export (bool) var debug_mode = false
 var main_root
 var items
 var player
@@ -67,7 +67,7 @@ func game_ready():
 	player = main_root.player
 	status_bar = main_root.status_bar
 	camera = main_root.camera
-	
+	main_menu = main_root.main_menu
 	player_start_position = player.position
 		
 	
@@ -154,10 +154,12 @@ func restart():
 	# Restart game logic
 	
 	is_dead = false
-	if cur_level_instance != null:
+	if cur_level_instance:
 		cur_level_instance.queue_free()
 	player.restart()
 	items.restart()
+	if pizz_pick_up:
+		pizz_pick_up.queue_free()
 	cur_level = 0
 	in_ui = false
 	if game_over_ui:
@@ -178,10 +180,10 @@ func next_level():
 	if cur_level_instance.in_text:
 		cur_level_instance.text_ended()
 	level_changer_timer.stop()
-	if cur_level_instance:
-		cur_level_instance.queue_free()
 	cur_level += 1
 	if cur_level < num_of_levels:
+		if cur_level_instance:
+			cur_level_instance.queue_free()
 		_execute_level()
 	
 func _return_level_path():
@@ -195,7 +197,7 @@ func die():
 	player.die()
 
 func enter_main_menu():
-	
+	main_menu.enter_main_menu()
 	in_main_menu = true
 
 func exit_main_menu():

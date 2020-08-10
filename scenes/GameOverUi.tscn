@@ -1,18 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/GameOverText.gd" type="Script" id=1]
 [ext_resource path="res://Animations/gui/Background.png" type="Texture" id=2]
 [ext_resource path="res://Text/GameOverFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scripts/TextAnimation.gd" type="Script" id=4]
-
-[sub_resource type="OpenSimplexNoise" id=1]
-seed = 456
-
-[sub_resource type="NoiseTexture" id=2]
-width = 200
-height = 50
-seamless = true
-noise = SubResource( 1 )
+[ext_resource path="res://Text/FontButtonUI.tres" type="DynamicFont" id=5]
 
 [node name="Background" type="Sprite"]
 position = Vector2( 962, 527 )
@@ -38,24 +30,16 @@ __meta__ = {
 
 [node name="AnimationTimer" type="Timer" parent="."]
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-margin_left = -366.0
-margin_top = -195.0
-margin_right = 402.0
-margin_bottom = 295.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureButton" type="TextureButton" parent="CenterContainer"]
-margin_left = 284.0
-margin_top = 220.0
-margin_right = 484.0
-margin_bottom = 270.0
-texture_normal = SubResource( 2 )
+[node name="Button" type="Button" parent="."]
+margin_left = -254.472
+margin_top = 94.1667
+margin_right = 228.528
+margin_bottom = 135.167
+custom_fonts/font = ExtResource( 5 )
+text = "Restart"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="timeout" from="TextTimer" to="Text" method="_on_Timer_timeout"]
 [connection signal="timeout" from="AnimationTimer" to="." method="_on_AnimationTimer_timeout"]
-[connection signal="pressed" from="CenterContainer/TextureButton" to="." method="_restart"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

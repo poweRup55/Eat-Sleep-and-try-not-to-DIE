@@ -42,6 +42,7 @@ func _physics_process(delta):
 		set_location = true
 
 func appear_in_rand_loc():
+	randomize()
 	var rand_x = rand_range(100,1911)
 	var rand_y = rand_range(343, 1000)
 	self.set_global_position(Vector2(rand_x,rand_y))

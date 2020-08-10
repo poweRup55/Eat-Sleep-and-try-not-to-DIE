@@ -4,7 +4,7 @@
 [ext_resource path="res://Animations/BedAnim/BedAnimation.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 61.2954, 10.003 )
+extents = Vector2( 68.4837, 15.0479 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -56,8 +56,6 @@ scale = Vector2( 1.2, 1.2 )
 mode = 1
 script = ExtResource( 1 )
 nameOfStat = "Rest"
-reduce_from_stat = 2.0
-intervals = 0.5
 is_enabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -67,8 +65,8 @@ texture = ExtResource( 2 )
 hframes = 5
 frame = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.0267, -1.52588e-05 )
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( -0.76575, 0.29872 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -55,8 +55,6 @@ tracks/1/keys = {
 mode = 1
 script = ExtResource( 1 )
 nameOfStat = "Bladder"
-reduce_from_stat = 2.0
-intervals = 0.5
 is_enabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -65,7 +63,7 @@ scale = Vector2( 7, 7 )
 texture = ExtResource( 2 )
 hframes = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

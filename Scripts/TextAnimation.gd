@@ -14,6 +14,7 @@ func _ready():
 	animationTimer = $AnimationTimer
 	self.position = start_pos
 	self.z_index = 3
+	start_box()
 	
 func start_box():
 	animationTimer.start(animation_timer_interval)
@@ -38,5 +39,5 @@ func _on_AnimationTimer_timeout():
 		else:
 			animationTimer.start(animation_timer_interval)
 
-func _restart():
+func _on_Button_pressed():
 	GameManager.restart()

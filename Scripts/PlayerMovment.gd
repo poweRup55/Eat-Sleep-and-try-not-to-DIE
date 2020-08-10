@@ -86,6 +86,7 @@ func restart():
 	self.position = GameManager.player_start_position
 	$AnimationTree.active = true
 	animationState.travel('Run')
+	velocity = Vector2.ZERO
 	enable()
 
 func _on_AnimationPlayer_death_finished():
